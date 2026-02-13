@@ -10,9 +10,7 @@ RUN bundle check || bundle install
 
 COPY . .
 
-COPY --chmod=0755 ./bin/docker-entrypoint ./bin/docker-entrypoint
-
-ENTRYPOINT ["./bin/docker-entrypoint"]
+COPY --chmod=0755 entrypoints/docker-entrypoint /usr/local/bin/docker-entrypoint
+COPY --chmod=0755 entrypoints/sidekiq-entrypoint /usr/local/bin/sidekiq-entrypoint
 
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]

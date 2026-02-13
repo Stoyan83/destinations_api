@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+PID_FILE="tmp/pids/server.pid"
+if [ -f "$PID_FILE" ]; then
+  rm -f "$PID_FILE"
+fi
+
+exec bundle exec sidekiq -C config/sidekiq.yml

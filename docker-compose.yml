@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:16
+    container_name: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -10,9 +11,16 @@ services:
     ports:
       - "5432:5432"
 
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
   api:
     build: .
-    command: rails server -b 0.0.0.0
+    container_name: api
+    entrypoint: /usr/local/bin/docker-entrypoint
     volumes:
       - .:/app
       - bundle-cache:/usr/local/bundle
@@ -23,8 +31,24 @@ services:
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
       DATABASE_NAME: destination_api_development
+      REDIS_URL: redis://redis:6379/0
     depends_on:
       - db
+      - redis
+
+  sidekiq:
+    build: .
+    container_name: sidekiq
+    entrypoint: /usr/local/bin/sidekiq-entrypoint
+    volumes:
+      - .:/app
+      - bundle-cache:/usr/local/bundle
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+      - api
 
 volumes:
   db-data:
