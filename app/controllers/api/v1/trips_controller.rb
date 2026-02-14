@@ -16,10 +16,22 @@ module Api
 
       def show
         trip = Trip.find(params[:id])
+
         render json: trip, serializer: Api::V1::TripSerializer
       end
 
+      def create
+        permit_body_params(create_params)
+        trip = Trip.create!(create_params)
+
+        render json: trip, serializer: Api::V1::TripSerializer, status: :created
+      end
+
       private
+
+      def create_params
+        params.require(:trip).permit(:name, :image_url, :short_description, :long_description, :rating)
+      end
 
       def filter_params
         params.permit(:search, :min_rating, :sort, :direction, :page, :per_page)

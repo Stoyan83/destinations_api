@@ -5,7 +5,7 @@ class CreateTrips < ActiveRecord::Migration[8.1]
       t.text    :image_url, null: false
       t.text    :short_description, null: false
       t.text    :long_description
-      t.integer :rating, null: false, default: 1
+      t.integer :rating, null: false
 
       t.timestamps
     end

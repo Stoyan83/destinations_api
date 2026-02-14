@@ -20,7 +20,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_13_234949) do
     t.text "image_url", null: false
     t.text "long_description"
     t.string "name", null: false
-    t.integer "rating", default: 1, null: false
+    t.integer "rating", null: false
     t.text "short_description", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_trips_on_name", unique: true

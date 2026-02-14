@@ -18,7 +18,13 @@ RSpec.describe Trip, type: :model do
       it { should validate_length_of(:long_description).is_at_most(65_535) }
 
       it { should validate_presence_of(:rating) }
-      it { should validate_inclusion_of(:rating).in_range(1..5).with_message(:rating_range) } 
+      it do
+        should validate_numericality_of(:rating)
+          .only_integer
+          .is_greater_than_or_equal_to(1)
+          .is_less_than_or_equal_to(5)
+          .with_message(:rating_range)
+      end
   end
 end
   

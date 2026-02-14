@@ -6,3 +6,16 @@ en:
           attributes:
             rating:
               rating_range: "must be a whole number between 1 and 5"
+
+
+  api:
+    errors:
+      unpermitted_parameters:
+        code: "unpermitted_parameters"
+        message: "The following parameters are not permitted: %{params}"
+      not_found:
+        code: "not_found"
+        message: "The record you were looking for could not be found."
+      record_invalid:
+        code: "unprocessable_entity"
+        message: "Validation failed"

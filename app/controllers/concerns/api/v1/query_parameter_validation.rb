@@ -30,7 +30,6 @@ module Api
         unpermitted = normalized_keys - allowed_keys
         raise ActionController::UnpermittedParameters.new(unpermitted) if unpermitted.any?
       end
-      
 
       def valid_query_parameters
         current_action = action_name.to_sym
