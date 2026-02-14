@@ -5,13 +5,20 @@ module Api
       allow_query_parameters! :id, only: :show
 
       def index
-        filtered = Trip.filter(filter_params)
-        paginated = paginate(filtered)
+        cache_key = "trips_index/" + Digest::MD5.hexdigest(filter_params.to_h.sort.to_h.to_s)
 
-        render json: paginated[:data],
-               each_serializer: Api::V1::TripSerializer,
-               collection: true,
-               meta: paginated[:meta]
+        rendered_json = Rails.cache.fetch(cache_key, expires_in: 5.minutes) do
+          filtered = Trip.filter(filter_params)
+          paginated = paginate(filtered)
+
+          ActiveModelSerializers::SerializableResource.new(
+            paginated[:data],
+            each_serializer: Api::V1::TripSerializer,
+            meta: paginated[:meta]
+          ).as_json
+        end
+
+        render json: rendered_json, status: :ok
       end
 
       def show
