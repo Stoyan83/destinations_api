@@ -7,7 +7,7 @@ module Filterable
       results = results.includes(*associations) if associations.any?
 
       order_by = filter_params.delete(:sort)
-      direction = filter_params.delete(:direction)&.downcase == 'desc' ? :desc : :asc
+      direction = filter_params.delete(:direction)&.downcase == "desc" ? :desc : :asc
 
       results = apply_filters(results, filter_params)
       results = apply_ordering(results, order_by, direction)
@@ -33,7 +33,7 @@ module Filterable
     end
 
     def apply_ordering(results, order_by, direction)
-      column = sortable_columns.include?(order_by.to_s) ? order_by.to_s : 'name'
+      column = sortable_columns.include?(order_by.to_s) ? order_by.to_s : "name"
       scope_name = "order_by_#{column}"
 
       if results.respond_to?(scope_name)

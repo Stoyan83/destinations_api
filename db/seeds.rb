@@ -13,7 +13,7 @@ bulk_trips = trips_data.map do |trip|
       updated_at: Time.current
   }
 end
-  
+
 Trip.upsert_all(bulk_trips, unique_by: :name)
 
 puts "✅ Successfully seeded #{bulk_trips.size} trips into the database."

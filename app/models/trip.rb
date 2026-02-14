@@ -12,10 +12,10 @@ class Trip < ApplicationRecord
 
   pg_search_scope :combined_search,
     against: {
-      name: 'A'  
+      name: "A"
     },
     using: {
-      tsearch: { prefix: true },  
+      tsearch: { prefix: true },
       trigram: { threshold: 0.4 }
     },
     ranked_by: ":tsearch + (0.5 * :trigram)"
@@ -26,7 +26,7 @@ class Trip < ApplicationRecord
     scope :order_by_name,   ->(dir = :asc) { reorder(name: dir.to_sym) }
     scope :order_by_rating, ->(dir = :asc) { reorder(rating: dir.to_sym) }
 
-    private 
+    private
 
     def strip_attributes
       attributes.each do |attr, value|

@@ -13,7 +13,7 @@ module Api
 
       def handle_unpermitted_parameters(exception)
         unpermitted_params = exception.params
-        formatted_params = unpermitted_params.map(&:to_s).join(', ')
+        formatted_params = unpermitted_params.map(&:to_s).join(", ")
 
         error_response = {
           error: {

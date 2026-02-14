@@ -23,10 +23,10 @@ module Api
 
       def reject_invalid_query_parameters!
         return unless self.class.permitted_query_params.any? { |rule| rule.applies_to?(action_name.to_sym) }
-      
+
         normalized_keys = request.query_parameters.keys.map(&:to_s)
         allowed_keys = valid_query_parameters
-      
+
         unpermitted = normalized_keys - allowed_keys
         raise ActionController::UnpermittedParameters.new(unpermitted) if unpermitted.any?
       end
@@ -35,7 +35,7 @@ module Api
         current_action = action_name.to_sym
         self.class.permitted_query_params
             .select { |rule| rule.applies_to?(current_action) }
-            .flat_map(&:parameters).map(&:to_s) 
+            .flat_map(&:parameters).map(&:to_s)
       end
     end
   end

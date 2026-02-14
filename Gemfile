@@ -46,7 +46,7 @@ gem "pg_search"
 gem "kaminari"
 
 # Serialization
-gem 'active_model_serializers'
+gem "active_model_serializers"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -59,8 +59,6 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails"
-  gem 'shoulda-matchers'
+  gem "shoulda-matchers"
   gem "factory_bot_rails"
 end
-
-

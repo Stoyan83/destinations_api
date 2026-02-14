@@ -90,7 +90,7 @@ RSpec.describe "Api::V1::Trips#index", type: :request do
 
         expect(response).to have_http_status(:ok)
         ratings = data.map { |t| t["rating"] }
-        expect(ratings).to eq([5, 3, 1])
+        expect(ratings).to eq([ 5, 3, 1 ])
       end
     end
 
