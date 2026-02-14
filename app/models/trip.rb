@@ -1,5 +1,6 @@
 class Trip < ApplicationRecord
   include PgSearch::Model
+  include Filterable
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 255 }
   validates :image_url, presence: true, length: { maximum: 65_535 }
@@ -16,4 +17,10 @@ class Trip < ApplicationRecord
       trigram: { threshold: 0.4 }
     },
     ranked_by: ":tsearch + (0.5 * :trigram)"
+
+    scope :filter_by_search, ->(term) { combined_search(term) }
+    scope :filter_by_min_rating, ->(min) { where("rating >= ?", min.to_i) }
+
+    scope :order_by_rating, ->(dir = :asc) { order(rating: dir) }
+    scope :order_by_name, ->(dir = :asc) { order(name: dir) }
 end
