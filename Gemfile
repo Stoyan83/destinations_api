@@ -61,4 +61,9 @@ group :development, :test do
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "factory_bot_rails"
+
+  # Swagger
+  gem 'rswag-api'
+  gem 'rswag-ui'
+  gem 'rswag-specs'
 end
