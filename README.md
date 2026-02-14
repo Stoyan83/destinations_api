@@ -28,7 +28,7 @@ http://localhost:3000/api-docs/index.html
 ###  Run specs.
 
 ```bash
-docker compose run --rm api bundle exec rsp
+docker compose run --rm api bundle exec rspec
 ```
 
 ### Post Request Logging System wih Sidekiq
