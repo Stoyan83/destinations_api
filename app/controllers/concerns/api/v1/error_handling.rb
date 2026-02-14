@@ -12,7 +12,7 @@ module Api
 
         def handle_unpermitted_parameters(exception)
           unpermitted_params = exception.params
-          formatted_params = unpermitted_params.map { |param| ">#{param}" }.join(', ')
+          formatted_params = unpermitted_params.map { |param| "#{param}" }.join(', ')
   
 
           error_response = {
@@ -28,7 +28,7 @@ module Api
         def handle_record_not_found(exception)
           error_response = {
             error: {
-              code: "record_not_found",
+              code: "not_found",
               message: "The record you were looking for could not be found."
             }
           }

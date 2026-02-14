@@ -1,8 +1,6 @@
 file_path = Rails.root.join('db', 'seeds', 'data.json')
 
-
 trips_data = JSON.parse(File.read(file_path))['trips']
-
 
 bulk_trips = trips_data.map do |trip|
   {

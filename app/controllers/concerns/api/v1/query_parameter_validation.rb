@@ -12,35 +12,35 @@ module Api
 
         def self.allow_query_parameters!(*params)
           options = params.extract_options!
+          only_actions = options[:only]
+          except_actions = options[:except]
 
-          allowed_actions = options[:only]
-          excluded_actions = options[:except]
-
-          permitted_query_params << QueryParamRule.new(params, only: allowed_actions, except: excluded_actions)
+          permitted_query_params << QueryParamRule.new(params, only: only_actions, except: except_actions)
         end
       end
 
       private
 
       def reject_invalid_query_parameters!
-        if self.class.permitted_query_params.any? { |rule| rule.applies_to?(action_name.to_sym) }
-          invalid_parameters = request.query_parameters.keys - valid_query_parameters
-
-          raise ActionController::UnpermittedParameters.new(invalid_parameters) if invalid_parameters.any?
-        end
+        return unless self.class.permitted_query_params.any? { |rule| rule.applies_to?(action_name.to_sym) }
+      
+        normalized_keys = request.query_parameters.keys.map(&:to_s)
+        allowed_keys = valid_query_parameters
+      
+        unpermitted = normalized_keys - allowed_keys
+        raise ActionController::UnpermittedParameters.new(unpermitted) if unpermitted.any?
       end
+      
 
       def valid_query_parameters
         current_action = action_name.to_sym
-
-        self.class.permitted_query_params.select { |rule| rule.applies_to?(current_action) }
-          .flat_map(&:parameters)
-          .map { |param| param.to_s.camelize(:lower) }
+        self.class.permitted_query_params
+            .select { |rule| rule.applies_to?(current_action) }
+            .flat_map(&:parameters).map(&:to_s) 
       end
     end
   end
 end
-
 
 class QueryParamRule
   attr_reader :parameters

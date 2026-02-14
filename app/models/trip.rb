@@ -21,6 +21,6 @@ class Trip < ApplicationRecord
     scope :filter_by_search, ->(term) { combined_search(term) }
     scope :filter_by_min_rating, ->(min) { where("rating >= ?", min.to_i) }
 
-    scope :order_by_rating, ->(dir = :asc) { order(rating: dir) }
-    scope :order_by_name, ->(dir = :asc) { order(name: dir) }
+    scope :order_by_name,   ->(dir = :asc) { reorder(name: dir.to_sym) }
+    scope :order_by_rating, ->(dir = :asc) { reorder(rating: dir.to_sym) }
 end
