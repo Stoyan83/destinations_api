@@ -1,7 +1,8 @@
 module Api
   module V1
-    class TripsController < ApplicationController
-      include Paginatable
+    class TripsController < Api::V1::BaseController
+      allow_query_parameters! :search, :min_rating, :sort, :direction, :page, :per_page, only: :index
+      allow_query_parameters! :id, only: :show
 
       def index
         filtered = Trip.filter(filter_params)

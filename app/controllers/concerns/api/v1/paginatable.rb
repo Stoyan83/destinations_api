@@ -1,4 +1,4 @@
-module Paginatable
+module Api::V1::Paginatable
   extend ActiveSupport::Concern
 
   def paginate(scope, page: params[:page], per_page: params[:per_page])

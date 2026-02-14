@@ -32,6 +32,8 @@ services:
       DATABASE_PASSWORD: password
       DATABASE_NAME: destination_api_development
       REDIS_URL: redis://redis:6379/0
+    stdin_open: true
+    tty: true
     depends_on:
       - db
       - redis
