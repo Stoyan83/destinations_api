@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_13_234949) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_14_195426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "api_requests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.float "duration_ms"
+    t.string "http_method"
+    t.string "ip_address"
+    t.jsonb "params", default: {}
+    t.string "path"
+    t.integer "response_status"
+    t.datetime "updated_at", null: false
+    t.index ["http_method"], name: "index_api_requests_on_http_method"
+    t.index ["path"], name: "index_api_requests_on_path"
+    t.index ["response_status"], name: "index_api_requests_on_response_status"
+  end
 
   create_table "trips", force: :cascade do |t|
     t.datetime "created_at", null: false
