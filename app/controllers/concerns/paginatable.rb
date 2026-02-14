@@ -1,4 +1,4 @@
-odule Paginatable
+module Paginatable
   extend ActiveSupport::Concern
 
   def paginate(scope, page: params[:page], per_page: params[:per_page])
@@ -8,13 +8,13 @@ odule Paginatable
     paginated = scope.page(page_number).per(per_page_number)
 
     {
+      data: paginated,
       meta: {
         current_page: paginated.current_page,
         per_page: paginated.limit_value,
         total_pages: paginated.total_pages,
-        total_count: paginated.total_count
-      },
-      data: paginated
+        total_records: paginated.total_count
+      }
     }
   end
 end
