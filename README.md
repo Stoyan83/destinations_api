@@ -31,9 +31,9 @@ http://localhost:3000/api-docs/index.html
 docker compose run --rm api bundle exec rspec
 ```
 
-### Post Request Logging System wih Sidekiq
+### Implemented Post Request Logging System wih Sidekiq
 
-Every POST PUT DELETE request is logged with:
+Every POST PUT DELETE request is saved in ApiRequest model and logged with:
 
 - **Client IP address**
 - **Timestamp**
