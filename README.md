@@ -30,6 +30,7 @@ http://localhost:3000/api-docs/index.html
 ```bash
 docker compose run --rm api bundle exec rspec
 ```
+### Implemented Caching with redis on Index point.
 
 ### Implemented Post Request Logging System wih Sidekiq
 
