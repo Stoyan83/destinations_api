@@ -23,17 +23,23 @@ paths:
                     properties:
                       id:
                         type: integer
+                        example: 1
                       name:
                         type: string
+                        example: Forbidden Island
                       image_url:
                         type: string
+                        example: https://example.com/image.jpg
                       short_description:
                         type: string
+                        example: Secret place
                       long_description:
                         type: string
                         nullable: true
+                        example: Very secret place
                       rating:
                         type: integer
+                        example: 1
                     required:
                     - id
                     - name
@@ -54,8 +60,10 @@ paths:
                     properties:
                       code:
                         type: string
+                        example: validation_error
                       message:
                         type: string
+                        example: Name can't be blank
                     required:
                     - code
                     - message
@@ -73,8 +81,10 @@ paths:
                     properties:
                       code:
                         type: string
+                        example: unpermitted_parameters
                       message:
                         type: string
+                        example: 'Found unpermitted parameter: hack_param'
                     required:
                     - code
                     - message
@@ -91,15 +101,20 @@ paths:
                   properties:
                     name:
                       type: string
+                      example: Forbidden Island
                     image_url:
                       type: string
+                      example: https://example.com/image.jpg
                     short_description:
                       type: string
+                      example: Secret place
                     long_description:
                       type: string
                       nullable: true
+                      example: Very secret place
                     rating:
                       type: integer
+                      example: 1
                   required:
                   - name
                   - image_url
@@ -169,25 +184,40 @@ paths:
                       properties:
                         id:
                           type: integer
+                          example: 5
                         name:
                           type: string
+                          example: Mount Rushmore
+                        image_url:
+                          type: string
+                          example: https://images.unsplash.com/photo-1586974772928-9e4d0efcc9ab
+                        short_description:
+                          type: string
+                          example: Famous presidential monument carved into granite.
                         rating:
                           type: integer
+                          example: 4
                       required:
                       - id
                       - name
+                      - image_url
+                      - short_description
                       - rating
                   meta:
                     type: object
                     properties:
                       current_page:
                         type: integer
+                        example: 1
                       per_page:
                         type: integer
+                        example: 10
                       total_pages:
                         type: integer
+                        example: 1
                       total_records:
                         type: integer
+                        example: 3
                     required:
                     - current_page
                     - per_page
@@ -208,8 +238,10 @@ paths:
                     properties:
                       code:
                         type: string
+                        example: unpermitted_parameters
                       message:
                         type: string
+                        example: 'Found unpermitted parameter: foo'
                     required:
                     - code
                     - message
@@ -246,13 +278,32 @@ paths:
                     properties:
                       id:
                         type: integer
+                        example: 1
                       name:
                         type: string
+                        example: Grand Canyon National Park
+                      image_url:
+                        type: string
+                        example: https://images.unsplash.com/photo-1501785888041-af3ef285b470
+                      short_description:
+                        type: string
+                        example: Vast red rock canyon carved by the Colorado River.
+                      long_description:
+                        type: string
+                        nullable: true
+                        example: Stretching 277 miles long and over a mile deep, the
+                          Grand Canyon reveals nearly two billion years of Earth's
+                          history through its colorful layers of rock. Visitors can
+                          hike, raft, or simply take in the breathtaking views from
+                          the rim.
                       rating:
                         type: integer
+                        example: 5
                     required:
                     - id
                     - name
+                    - image_url
+                    - short_description
                     - rating
                 required:
                 - trip
@@ -268,8 +319,10 @@ paths:
                     properties:
                       code:
                         type: string
+                        example: not_found
                       message:
                         type: string
+                        example: The record you were looking for could not be found.
                     required:
                     - code
                     - message
@@ -287,8 +340,10 @@ paths:
                     properties:
                       code:
                         type: string
+                        example: unpermitted_parameters
                       message:
                         type: string
+                        example: 'Found unpermitted parameter: foo'
                     required:
                     - code
                     - message

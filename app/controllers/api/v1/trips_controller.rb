@@ -14,6 +14,7 @@ module Api
           ActiveModelSerializers::SerializableResource.new(
             paginated[:data],
             each_serializer: Api::V1::TripSerializer,
+            collection: true,
             meta: paginated[:meta]
           ).as_json
         end

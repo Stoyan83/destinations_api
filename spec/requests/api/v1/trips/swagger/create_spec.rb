@@ -13,11 +13,11 @@ RSpec.describe 'Trips API', type: :request do
           trip: {
             type: :object,
             properties: {
-              name: { type: :string },
-              image_url: { type: :string },
-              short_description: { type: :string },
-              long_description: { type: :string, nullable: true },
-              rating: { type: :integer }
+              name: { type: :string, example: "Forbidden Island" },
+              image_url: { type: :string, example: "https://example.com/image.jpg" },
+              short_description: { type: :string, example: "Secret place" },
+              long_description: { type: :string, nullable: true, example: "Very secret place" },
+              rating: { type: :integer, example: 1 }
             },
             required: %w[name image_url short_description rating]
           }
@@ -43,12 +43,12 @@ RSpec.describe 'Trips API', type: :request do
                  trip: {
                    type: :object,
                    properties: {
-                     id: { type: :integer },
-                     name: { type: :string },
-                     image_url: { type: :string },
-                     short_description: { type: :string },
-                     long_description: { type: :string, nullable: true },
-                     rating: { type: :integer }
+                     id: { type: :integer, example: 1 },
+                     name: { type: :string, example: "Forbidden Island" },
+                     image_url: { type: :string, example: "https://example.com/image.jpg" },
+                     short_description: { type: :string, example: "Secret place" },
+                     long_description: { type: :string, nullable: true, example: "Very secret place" },
+                     rating: { type: :integer, example: 1 }
                    },
                    required: %w[id name image_url short_description rating]
                  }
@@ -75,8 +75,8 @@ RSpec.describe 'Trips API', type: :request do
                  error: {
                    type: :object,
                    properties: {
-                     code: { type: :string },
-                     message: { type: :string }
+                     code: { type: :string, example: "validation_error" },
+                     message: { type: :string, example: "Name can't be blank" }
                    },
                    required: %w[code message]
                  }
@@ -104,8 +104,8 @@ RSpec.describe 'Trips API', type: :request do
                  error: {
                    type: :object,
                    properties: {
-                     code: { type: :string },
-                     message: { type: :string }
+                     code: { type: :string, example: "unpermitted_parameters" },
+                     message: { type: :string, example: "Found unpermitted parameter: hack_param" }
                    },
                    required: %w[code message]
                  }
