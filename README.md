@@ -28,7 +28,7 @@ http://localhost:3000/api-docs/index.html
 ###  Run specs.
 
 ```bash
-docker compose run --rm api bundle exec rspec
+docker compose run --rm -e RAILS_ENV=test api rspec
 ```
 ### Implemented Caching with redis on Index point.
 

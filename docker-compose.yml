@@ -27,6 +27,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      RAILS_ENV: development
       DATABASE_HOST: db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
